@@ -4,6 +4,8 @@ import { MusicApiService } from '../../services/music-api.service';
 import {  HttpClient, provideHttpClient } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
+import { TransferInfoCultService } from '../../services/transfer-info-cult.service';
 
 @Component({
   selector: 'app-home-cult',
@@ -17,7 +19,7 @@ export class HomeCultComponent implements OnInit {
   public cults : Array<CultResponse> = [];
   private musicService: MusicApiService;
 
-  constructor(private _httpClient: HttpClient){
+  constructor(private _httpClient: HttpClient, private route: Router, private cultInfoService: TransferInfoCultService){
     this.musicService = new MusicApiService(_httpClient);
   }
   
@@ -34,6 +36,13 @@ export class HomeCultComponent implements OnInit {
       }
     );
     
+  }
+
+
+  navigateToCultDetails(index: number ) {
+    this.cultInfoService.setCultInfos = this.cults[index];
+    this.route.navigate(["/cult/details"]);
+    console.log(this.cultInfoService.getCultInfos)
   }
 
 
