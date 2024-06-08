@@ -1,7 +1,7 @@
 export interface CultResponse {
     id: string;
     name: string;
-    Praise: Array<Praise>;
+    praise: Array<Praise>;
 }
 
 export interface Praise {

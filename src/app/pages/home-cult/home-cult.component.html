@@ -3,7 +3,14 @@
     <section>
         @for (cult of cults; track $index) {
             <article>
-                
+                <mat-card>
+                    <mat-card-header>
+                      <mat-card-title>{{cult.name}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-actions class="container-button">
+                      <button mat-button>VER CULTO</button>
+                    </mat-card-actions>
+                  </mat-card>
             </article>
         }
     </section>

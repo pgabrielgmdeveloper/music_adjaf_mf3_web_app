@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CultResponse } from '../../model/cult/cult';
 import { MusicApiService } from '../../services/music-api.service';
 import {  HttpClient, provideHttpClient } from '@angular/common/http';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-home-cult',
   standalone: true,
-  imports: [],
+  imports: [MatCardModule, MatButtonModule],
   templateUrl: './home-cult.component.html',
   styleUrl: './home-cult.component.scss',
 })
@@ -23,6 +25,7 @@ export class HomeCultComponent implements OnInit {
     this.musicService.getCultsDay.subscribe(
       {
         next: (res: Array<CultResponse>) => {
+          
           this.cults = res
         },
         error: err => {
@@ -30,6 +33,7 @@ export class HomeCultComponent implements OnInit {
         }
       }
     );
+    
   }
 
 

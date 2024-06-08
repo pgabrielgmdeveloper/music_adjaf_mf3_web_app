@@ -1,3 +1,18 @@
 main {
+    section {
+        display: grid;
+        gap: 8px;
+        margin: 0 10px;
+        article {
+           .container-button {
+            display: grid;
+            justify-content: flex-end;
+           }
+        }
+    }
     width: 100%;
+    ul {
+        list-style: none;
+    }
+    
 }
