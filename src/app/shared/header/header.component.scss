@@ -1,0 +1,9 @@
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  span {
+    text-align: center;
+  }
+
+}
