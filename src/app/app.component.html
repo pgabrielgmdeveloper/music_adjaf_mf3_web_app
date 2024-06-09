@@ -1,2 +1,13 @@
-<app-header></app-header>
-<router-outlet />
+<mat-toolbar class="elevation">
+    <button mat-icon-button (click)="change()">
+        <mat-icon>menu</mat-icon>
+    </button>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav opened>
+        <p>Ola</p>
+    </mat-sidenav>
+    <mat-sidenav-content class="content">
+        <router-outlet />
+    </mat-sidenav-content>    
+</mat-sidenav-container>
