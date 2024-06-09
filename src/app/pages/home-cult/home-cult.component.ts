@@ -41,8 +41,7 @@ export class HomeCultComponent implements OnInit {
 
   navigateToCultDetails(index: number ) {
     this.cultInfoService.setCultInfos = this.cults[index];
-    this.route.navigate(["/cult/details"]);
-    console.log(this.cultInfoService.getCultInfos)
+    this.route.navigate(["home/cult/details"]);
   }
 
 

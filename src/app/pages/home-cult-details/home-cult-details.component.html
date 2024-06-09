@@ -1,0 +1,40 @@
+<main>
+    <section>
+        @for (praise of cult.praise; track $index) {
+            <article>
+                <mat-card>
+                    <mat-card-header>
+                      <mat-card-title>{{praise.group.name}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-actions>
+                      <nav class="container-music">
+                        <p>{{praise.music.name}}</p>
+                        <ul>
+                            <li>
+                                <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                                    <mat-icon>play_arrow</mat-icon>
+                                </button>
+                            </li>
+                            <li>
+                                <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                                    <mat-icon>pause</mat-icon>
+                                </button>
+                            </li>
+                            <li>
+                                <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                                    <mat-icon>download</mat-icon>
+                                </button>
+                            </li>
+                        </ul>
+                      </nav>
+                    </mat-card-actions>
+                  </mat-card>
+            </article>
+        }
+    </section>
+    
+        <button mat-icon-button class="float-button" aria-label="Example icon-button with menu icon">
+            <mat-icon>add</mat-icon>
+        </button>
+    
+</main>

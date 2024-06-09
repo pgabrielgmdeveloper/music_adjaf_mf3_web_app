@@ -1,0 +1,33 @@
+
+main {
+    position: relative;
+    height: 90vh;
+    section{
+        height: 80vh;
+        display: grid;
+        margin: 0 10px;
+        .container-music {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            ul {
+              list-style: none;
+              display: flex;  
+            }
+        }
+        overflow-y: scroll;
+        mat-card {
+            margin-top: 5px;
+        }
+    }
+
+    .float-button {
+        position: absolute;
+        background-color: #a29bfe;
+        bottom: 3%;
+        right: 3%;
+      
+    }
+
+}
