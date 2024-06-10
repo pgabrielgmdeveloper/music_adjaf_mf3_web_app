@@ -1,11 +1,30 @@
 <mat-toolbar class="elevation">
-    <button mat-icon-button (click)="change()">
+    <button mat-icon-button  (click)="toggleSidenav()">
         <mat-icon>menu</mat-icon>
     </button>
+    
+    <p>
+        {{currentPage}}
+    </p>
 </mat-toolbar>
 <mat-sidenav-container>
-    <mat-sidenav opened>
-        <p>Ola</p>
+    <mat-sidenav #sidenav (backdropClick)="sidenav.close()" (keydown.escape)="sidenav.close()">
+        <div class="container-logo-side">
+            <div class="image-logo-side">
+                <img src="" alt="Logo igreja ADJAF">    
+            </div>
+            <p>ADJAF</p>
+        </div>
+        <ul>
+            <li>
+                <button mat-button (click)="navigateToHome()" ><mat-icon>church</mat-icon>
+                    Item 1</button>
+            </li>
+            <li>
+                <button mat-button (click)="navigateToMusic()"><mat-icon>library_music</mat-icon>
+                    Item 1</button>
+            </li>
+        </ul>
     </mat-sidenav>
     <mat-sidenav-content class="content">
         <router-outlet />
