@@ -6,11 +6,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { TransferInfoCultService } from '../../services/transfer-info-cult.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-home-cult',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule],
+  imports: [MatCardModule, MatButtonModule, MatButtonModule, MatIconModule],
   templateUrl: './home-cult.component.html',
   styleUrl: './home-cult.component.scss',
 })

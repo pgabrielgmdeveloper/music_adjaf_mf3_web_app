@@ -14,5 +14,16 @@ main {
     ul {
         list-style: none;
     }
-    
+    .footer {
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        bottom: 0;
+        padding: 48px;
+        width: 100%;
+        height: 50px; 
+        button {
+            background-color: blueviolet;
+        }
+    }
 }
