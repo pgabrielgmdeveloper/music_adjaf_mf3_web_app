@@ -4,28 +4,17 @@
             <article>
                 <mat-card>
                     <mat-card-header>
-                      <mat-card-title>{{praise.group.name}}</mat-card-title>
+                      <mat-card-title>Louvor: {{praise.group.name}}</mat-card-title>
+                      <mat-card-subtitle>Musica: {{praise.music.name}}</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-actions>
                       <nav class="container-music">
-                        <p>{{praise.music.name}}</p>
-                        <ul>
-                            <li>
-                                <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-                                    <mat-icon>play_arrow</mat-icon>
-                                </button>
-                            </li>
-                            <li>
-                                <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-                                    <mat-icon>pause</mat-icon>
-                                </button>
-                            </li>
-                            <li>
-                                <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-                                    <mat-icon>download</mat-icon>
-                                </button>
-                            </li>
-                        </ul>
+                            @if (praise.music.URI) {
+                                <audio controls>
+                                    <source src={{praise.music.URI}} type="audio/mpeg">
+                                    Seu navegador não suporta áudio tag.
+                                </audio>
+                            }
                       </nav>
                     </mat-card-actions>
                   </mat-card>
@@ -33,6 +22,8 @@
         }
     </section>
     
-     
+     <button mat-icon-button class="float-button">
+        <mat-icon>add</mat-icon>
+     </button>
     
 </main>

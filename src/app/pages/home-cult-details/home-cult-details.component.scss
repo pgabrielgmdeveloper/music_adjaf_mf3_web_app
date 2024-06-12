@@ -1,24 +1,28 @@
 
 main {
     position: relative;
-    height: 90vh;
+    height: 80vh;
     section{
         height: 80vh;
         display: grid;
         margin: 0 10px;
         .container-music {
             width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            ul {
-              list-style: none;
-              display: flex;  
-            }
+            display: grid;
+            
+        
         }
-        overflow-y: scroll;
         mat-card {
             margin-top: 5px;
         }
+        audio {
+            width: 100%;
+        }
+    }
+    .float-button{
+        background-color: blueviolet;
+        position: fixed;
+        bottom: 3%;
+        right: 3%;
     }
 }

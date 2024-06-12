@@ -14,16 +14,13 @@ main {
     ul {
         list-style: none;
     }
-    .footer {
-        display: flex;
-        justify-content: flex-end;
-        position: absolute;
-        bottom: 0;
-        padding: 48px;
-        width: 100%;
-        height: 50px; 
-        button {
-            background-color: blueviolet;
-        }
-    }
+    
+}
+
+
+.float-button{
+    background-color: blueviolet;
+    position: fixed;
+    bottom: 3%;
+    right: 3%;
 }
