@@ -1,0 +1,34 @@
+<main>
+    <form [formGroup]="addPraiseForm" (ngSubmit)="addPraise()">
+     <mat-form-field>
+        <mat-label>Grupo/Cantor</mat-label>
+        <mat-select formControlName="group">
+          @for (group of groups; track $index) {
+            <mat-option [value]="group.id">{{group.name}}</mat-option>
+          }
+        </mat-select>
+        
+      </mat-form-field>
+        <mat-form-field>
+          <mat-label>Musica</mat-label>
+          
+          <input #input
+          formControlName="music"
+            type="text"
+            placeholder="Musicas"
+            matInput
+            [matAutocomplete]="auto"
+            (input)="filter()"
+            >     
+        <mat-autocomplete  requireSelection #auto="matAutocomplete">
+          @for (music of musics; track $index) {
+            <mat-option [value]="music.name +'|'+ music.singer">Musica: {{music.name}} <br> Cantor: {{music.singer}}</mat-option>
+          }
+        </mat-autocomplete>
+        <mat-error *ngIf="addPraiseForm.get('music')!.invalid">
+          Musica é Obrigatório.
+        </mat-error>
+      </mat-form-field>
+      <button mat-flat-button type="submit">ADICIONAR LOUVOR</button>
+    </form>
+</main> 

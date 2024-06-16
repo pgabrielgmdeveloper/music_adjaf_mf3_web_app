@@ -1,0 +1,35 @@
+main {
+    div {
+        .input-full-width {
+            width: 100%;
+        }
+    }
+    section {
+        height: 90%;
+        
+        .card {
+            height: 100px;
+            margin-bottom: 8px;
+            .container-music {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                ul {
+                  list-style: none;
+                  display: flex;  
+                  align-items: center;
+                  justify-content: flex-end;
+                }
+            }
+        }
+        overflow-y: auto;
+    }
+    height: calc(100vh - 64px - 24px - 48px);
+}
+.float-button{
+    background-color: blueviolet;
+    position: fixed;
+    bottom: 3%;
+    right: 3%;
+}

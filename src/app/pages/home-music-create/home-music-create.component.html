@@ -1,1 +1,30 @@
-<p>home-music-create works!</p>
+<main>
+    <form [formGroup]="musicForm" (ngSubmit)="submitForm()">
+        <mat-form-field>
+            <mat-label>Nome da musica</mat-label>
+            <input formControlName="name" matInput type="text">
+            <mat-error *ngIf="musicForm.get('name')!.invalid && musicForm.get('name')!.touched">
+                Nome é obrigatório.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>cantor</mat-label>
+            <input formControlName="singer" matInput type="text">
+            <mat-error *ngIf="musicForm.get('name')!.invalid && musicForm.get('name')!.touched">
+                Cantor é obrigatorio
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Letra</mat-label>
+            <textarea formControlName="letter" matInput></textarea>
+        </mat-form-field>
+        <div class="chose-file">
+            <button style="margin: 10px;" type="button" mat-raised-button (click)="fileInput.click()">select music</button>
+            <input formControlName="music" hidden (change)="onFileSelected($event)" #fileInput type="file">
+            <span class="file-name">{{musicForm.get('music')?.value?.name}}</span>
+        </div>
+        <button mat-flat-button type="submit">
+            CRIAR MUSICA
+        </button>
+    </form>
+</main>

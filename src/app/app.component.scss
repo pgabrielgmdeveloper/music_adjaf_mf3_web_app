@@ -25,6 +25,11 @@ mat-sidenav {
     width: 20%;
 }
 
+@media screen and (max-width: 600px){
+    mat-sidenav {
+        width: 50%;
+    }
+}
 
 mat-sidenav {
     padding: 30px;

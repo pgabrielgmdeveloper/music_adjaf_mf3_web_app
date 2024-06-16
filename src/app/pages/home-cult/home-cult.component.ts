@@ -32,7 +32,7 @@ export class HomeCultComponent implements OnInit {
           this.cults = res
         },
         error: err => {
-            console.log(err)
+            alert("Erro ao buscar cultos");
         }
       }
     );
@@ -41,7 +41,7 @@ export class HomeCultComponent implements OnInit {
 
 
   navigateToCultDetails(index: number ) {
-    this.cultInfoService.setCultInfos = this.cults[index];
+    this.cultInfoService.setCultInfos = this.cults[index].id;
     this.route.navigate(["home/cult/details"]);
   }
   navigateToCreateCult(){

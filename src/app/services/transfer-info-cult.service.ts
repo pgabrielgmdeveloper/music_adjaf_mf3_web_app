@@ -6,17 +6,17 @@ import { CultResponse } from '../model/cult/cult';
 })
 export class TransferInfoCultService {
 
-  private cultInfos: CultResponse | null
+  private cultInfos: string
 
   constructor() { 
-    this.cultInfos = null
+    this.cultInfos = ""
   }
 
-  get getCultInfos(): CultResponse | null {
+  get getCultInfos(): string {
     return this.cultInfos
   }
 
-  set setCultInfos(cult: CultResponse) {
+  set setCultInfos(cult: string) {
     this.cultInfos = cult
   }
 }

@@ -1,3 +1,5 @@
+import { MusicDownload } from "../music/music";
+
 export interface CultResponse {
     id: string;
     name: string;
@@ -7,9 +9,12 @@ export interface CultResponse {
 export interface Praise {
     id: string;
     group: Group;
-    music: Music;
+    music: Music | MusicDownload;
 }
 
+export interface AddPraise extends Praise {
+
+}
 export interface Group {
     id: string;
     name: string;
@@ -20,4 +25,9 @@ export interface Music {
     singer: string;
     name: string;
     letter: string;
+    URI: string
+}
+
+export interface CreateCultRequest{
+    name: string
 }

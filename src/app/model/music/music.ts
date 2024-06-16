@@ -18,5 +18,4 @@ export interface MusicDownload {
     singer: string,
     letter: string,
     URI: string
-
 }

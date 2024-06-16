@@ -1,1 +1,35 @@
-<p>home-music works!</p>
+<main>
+  <div>
+    <mat-form-field class="input-full-width">
+      <mat-label>Musicas</mat-label>
+      <input [(ngModel)]="musicName" (keyup)="searchMusics($event)" matInput placeholder="Ex: Caia fogo do ceu..." value="">
+    </mat-form-field>
+  </div>
+  <section>
+    <table mat-table [dataSource]="musics" class="mat-elevation-z8">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="singer">
+        <th mat-header-cell *matHeaderCellDef> Cantor </th>
+        <td mat-cell *matCellDef="let element"> {{element.singer}} </td>
+      </ng-container>
+      <ng-container matColumnDef="letter">
+        <th mat-header-cell *matHeaderCellDef> Letra </th>
+        <td mat-cell *matCellDef="let element"> <button mat-icon-button> <mat-icon>remove_red_eye</mat-icon> </button> </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </section>
+  <button mat-icon-button (click)="navigateToCreateMusic()" class="float-button">
+    <mat-icon>add</mat-icon>
+  </button>
+</main>
+
+  
+ 
+
+
+

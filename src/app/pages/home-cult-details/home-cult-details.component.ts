@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MusicApiService } from '../../services/music-api.service';
 import { MusicDownload } from '../../model/music/music';
+import { Router } from '@angular/router';
+import { map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-home-cult-details',
@@ -17,28 +19,44 @@ import { MusicDownload } from '../../model/music/music';
 export class HomeCultDetailsComponent implements OnInit {
 
   cult: CultResponse = {} as CultResponse;
-  constructor(private cultInfoService: TransferInfoCultService, private musicService: MusicApiService){}
+  constructor(private cultInfoService: TransferInfoCultService, private musicService: MusicApiService, private router: Router){}
 
   ngOnInit(): void {
-    this.cult = this.cultInfoService.getCultInfos ? this.cultInfoService.getCultInfos : {} as CultResponse
-    const musicsIds = this.cult.praise.map(p => p.music.id);
-    this.musicService.getMusicsUrl(musicsIds).subscribe(
-      {
-        next: res => {
-          this.cult.praise.map(praise => {
-            const indexMusicDownload = res.findIndex(music => music.id == praise.music.id);
-            praise.music = res[indexMusicDownload];
-          })
-        },
-        error: err => {
-          alert("error ao buscar musicas do culto");
+    const cultId = this.cultInfoService.getCultInfos;
+    this.musicService.getCultById(cultId).pipe(
+      tap(
+        {
+          next: res => {
+            this.cult = res;
+          },
+          error: err => {
+            alert("Erro ao buscar Culto");
+          },
         }
-      }
-
-    );
-
+      ),
+      map(res => res.praise.map(p => p.music.id)),
+      map(res => {
+        this.musicService.getMusicsUrl(res).subscribe(
+          {
+            next: res => {
+              this.cult.praise.map(praise => {
+                const indexMusicDownload = res.findIndex(music => music.id == praise.music.id);
+                praise.music = res[indexMusicDownload];
+              })
+            },
+            error: err => {
+              alert("Error Ao carregar musicas")
+            }
+          }
+        )
+      })
+    ).subscribe();
+    
   }
-
-
+  
+  navigateToAddPraise(){
+    this.cultInfoService.setCultInfos = this.cult.id;
+    this.router.navigate(["home/cult/add-praise"]);
+  }
 
 }

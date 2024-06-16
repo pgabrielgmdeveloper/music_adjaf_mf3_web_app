@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {CreateCultRequest, CultResponse} from "../model/cult/cult";
+import {AddPraise, CreateCultRequest, CultResponse} from "../model/cult/cult";
 import { CreateMusic, Music, MusicDownload } from '../model/music/music';
 import { Router } from '@angular/router';
 import { ListFormat } from 'typescript';
+import { Group } from '../model/group/group';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,6 +31,21 @@ export class MusicApiService {
     );
   }
 
+  addPraiseOnCult(payload: AddPraise): Observable<any> {
+    
+    return this.http.post<any>(`${this.url}/cult/addpraise`, payload).pipe(
+      res => res,
+      err => err
+    );
+  }
+
+  getCultById(cultId: string): Observable<CultResponse> {
+    return this.http.get<CultResponse>(`${this.url}/cult/${cultId}`).pipe(
+      res => res,
+      err => err
+    );
+  }
+
   createMusic(payload: CreateMusic): Observable<any> {
     const formData = new FormData();
     const musicJson = {name: payload.name,singer: payload.singer, letter: payload.letter}
@@ -50,6 +66,13 @@ export class MusicApiService {
 
   getMusicsUrl(ids: Array<string>): Observable<Array<MusicDownload>> {
     return this.http.post<Array<MusicDownload>>(`${this.url}/music/pressined`, {musicsIds: ids}).pipe(
+      res => res,
+      err => err
+    );
+  }
+
+  get getGroups() : Observable<Array<Group>> {
+    return this.http.get<Array<Group>>(`${this.url}/singer`).pipe(
       res => res,
       err => err
     );

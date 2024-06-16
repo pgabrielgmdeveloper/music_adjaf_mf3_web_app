@@ -24,7 +24,6 @@ export class HomeCultCreateComponent {
 
   createCult(){
     if(this.name == "" || this.name == undefined || this.name.length < 5){
-      console.log(this.name)
       alert("Preencha os campos de forma correta")
     } else {
       const payload: CreateCultRequest = {
