@@ -53,6 +53,7 @@ export class HomeMusicCreateComponent {
         },
         error: _ => {
             alert("error ao criar musica")
+            this.router.navigate(["home/music"])
         }
       }
     )

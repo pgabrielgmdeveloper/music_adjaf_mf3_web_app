@@ -89,12 +89,16 @@ export class HomeCultAddpraiseComponent implements OnInit {
       
       this.musicApi.addPraiseOnCult(payload).subscribe(
         {
+          next: res => {
+            this.router.navigate(["home/cult/details"]);
+          },
           error: err => {
             alert("error ao adicionar louvor");
+            this.router.navigate(["home/cult/details"]);
           }
         }
       )
-      this.router.navigate(["home/cult/details"]);
+      
 
   }
 

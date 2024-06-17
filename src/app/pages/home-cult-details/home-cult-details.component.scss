@@ -4,13 +4,13 @@ main {
     height: 80vh;
     section{
         height: 80vh;
-        display: grid;
         margin: 0 10px;
+        article {
+            margin-bottom: 5px;
+        }
         .container-music {
             width: 100%;
             display: grid;
-            
-        
         }
         mat-card {
             margin-top: 5px;

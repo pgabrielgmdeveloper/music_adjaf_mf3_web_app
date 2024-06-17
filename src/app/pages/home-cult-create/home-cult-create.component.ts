@@ -32,12 +32,13 @@ export class HomeCultCreateComponent {
       this.musicApi.createCult(payload).subscribe({
         next: res => {
           alert("Culto criado com sucesso !");
+          this.router.navigate(["home"])
         },
         error: err => {
           alert("Error ao criar culto");
+          this.router.navigate(["home"])
         }
       })
-      this.router.navigate(["home"])
     }
     
   }
