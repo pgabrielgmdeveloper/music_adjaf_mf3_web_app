@@ -1,0 +1,22 @@
+<main>
+    <form [formGroup]="formLogin" (submit)="login()">
+        <mat-form-field>
+            <mat-label>username</mat-label>
+            <input formControlName="username" matInput type="text">
+            <mat-error *ngIf="formLogin.get('username')!.invalid && formSubmited">
+                username é obrigatorio
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>senha</mat-label>
+            <input formControlName="password" matInput type="password">
+            <mat-error *ngIf="formLogin.get('password')!.invalid && formSubmited">
+                senha é obrigatoria
+            </mat-error>
+        </mat-form-field>
+        <div class="container-buttons">
+            <button mat-flat-button type="submit">Entrar</button>
+            <button mat-button>Ainda não possui conta ?</button>
+        </div>
+    </form>
+</main>

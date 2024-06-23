@@ -5,10 +5,14 @@ import { HomeMusicComponent } from './pages/home-music/home-music.component';
 import { HomeCultCreateComponent } from './pages/home-cult-create/home-cult-create.component';
 import { HomeMusicCreateComponent } from './pages/home-music-create/home-music-create.component';
 import { HomeCultAddpraiseComponent } from './pages/home-cult-addpraise/home-cult-addpraise.component';
+import { LoginComponent } from './pages/login/login.component';
 export const routes: Routes = [
   
   {
     path: "home", component: HomeCultComponent
+  },
+  {
+    path:"login", component: LoginComponent
   },
   {
     path:"home/cult/details", component: HomeCultDetailsComponent

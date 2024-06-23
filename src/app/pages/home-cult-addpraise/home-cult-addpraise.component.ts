@@ -13,6 +13,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { Music } from '../../model/music/music';
 import { AddPraise } from '../../model/cult/cult';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home-cult-addpraise',
@@ -30,7 +31,12 @@ export class HomeCultAddpraiseComponent implements OnInit {
   @ViewChild('input') input!: ElementRef<HTMLInputElement>;
   addPraiseForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private router: Router, private musicApi: MusicApiService, private cultInfosService: TransferInfoCultService){
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router, private musicApi: MusicApiService, 
+    private cultInfosService: TransferInfoCultService,
+    private toast : ToastrService
+  ){
     this.addPraiseForm = formBuilder.group({
         group: ['', Validators.required],
         music: ['', Validators.required]
@@ -47,7 +53,8 @@ export class HomeCultAddpraiseComponent implements OnInit {
         
       },
       error: err => {
-        alert("Error ao carregar Grupos");
+        this.toast.error("Error ao buscar grupos", "Entre em contato com o ADM do sistema")
+
       }
     })
 
@@ -57,7 +64,7 @@ export class HomeCultAddpraiseComponent implements OnInit {
         this.musics = this.options.slice();
       },
       error: err => {
-        alert("Error ao carregar Musicas");
+        this.toast.error("Error ao buscar musicas", "Entre em contato com o ADM do sistema")
       }
     })
   }
@@ -90,10 +97,11 @@ export class HomeCultAddpraiseComponent implements OnInit {
       this.musicApi.addPraiseOnCult(payload).subscribe(
         {
           next: res => {
+            this.toast.success("Louvou adicionado com sucesso");
             this.router.navigate(["home/cult/details"]);
           },
           error: err => {
-            alert("error ao adicionar louvor");
+            this.toast.error("Error ao adicionar louvor", "Entre em contato com o ADM do sistema")
             this.router.navigate(["home/cult/details"]);
           }
         }

@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {AddPraise, CreateCultRequest, CultResponse} from "../model/cult/cult";
 import { CreateMusic, Music, MusicDownload } from '../model/music/music';
-import { Router } from '@angular/router';
-import { ListFormat } from 'typescript';
+
 import { Group } from '../model/group/group';
+import { LoginRequest, LoginResponse } from '../model/auth/auth';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +22,7 @@ export class MusicApiService {
       err => err
     );
   }
+
 
 
   get getCultsDay() : Observable<Array<CultResponse>> {
@@ -77,4 +78,13 @@ export class MusicApiService {
       err => err
     );
   }
+  
+
+  login(payload: LoginRequest): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.url}/authentication`,payload).pipe(
+      res => res,
+      err => err,
+    )
+  }
+
 }

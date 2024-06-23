@@ -9,6 +9,7 @@ import { Music } from '../../model/music/music';
 import { MusicApiService } from '../../services/music-api.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home-music',
@@ -22,7 +23,7 @@ export class HomeMusicComponent implements OnInit {
   musics: Array<Music> = [];
   musicName = ""
   displayedColumns: string[] = ['name', 'singer', 'letter'];
-  constructor(private musicService: MusicApiService, private route: Router){}
+  constructor(private musicService: MusicApiService, private route: Router, private toast: ToastrService){}
   
   ngOnInit(): void {
     this.eatMusics();
@@ -39,7 +40,8 @@ export class HomeMusicComponent implements OnInit {
         this.musics = res
       },
       error: err => {
-        alert("Error ao buscar musicas");
+        this.toast.error("Error ao buscar Musicas !", "Entre em contato com o ADM do sistema")
+
       }
     });
 

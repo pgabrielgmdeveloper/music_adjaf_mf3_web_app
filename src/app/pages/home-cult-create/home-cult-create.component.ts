@@ -6,6 +6,7 @@ import { MusicApiService } from '../../services/music-api.service';
 import { CreateCultRequest } from '../../model/cult/cult';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home-cult-create',
@@ -18,24 +19,25 @@ export class HomeCultCreateComponent {
   name: string = ""
 
 
-  constructor(private musicApi: MusicApiService, private router: Router){
+  constructor(private musicApi: MusicApiService, private router: Router, private toast: ToastrService){
 
   }
 
   createCult(){
     if(this.name == "" || this.name == undefined || this.name.length < 5){
-      alert("Preencha os campos de forma correta")
+      this.toast.info("Verifique todos os campos");
+
     } else {
       const payload: CreateCultRequest = {
         name: this.name
       };
       this.musicApi.createCult(payload).subscribe({
         next: res => {
-          alert("Culto criado com sucesso !");
+          this.toast.success("Culto criado com sucesso !")
           this.router.navigate(["home"])
         },
         error: err => {
-          alert("Error ao criar culto");
+          this.toast.error("Error ao criar culto", "Entre em contato com o ADM do sistema")
           this.router.navigate(["home"])
         }
       })

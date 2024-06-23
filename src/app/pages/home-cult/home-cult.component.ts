@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { TransferInfoCultService } from '../../services/transfer-info-cult.service';
 import { MatIconModule } from '@angular/material/icon';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home-cult',
@@ -20,7 +21,7 @@ export class HomeCultComponent implements OnInit {
   public cults : Array<CultResponse> = [];
   private musicService: MusicApiService;
 
-  constructor(private _httpClient: HttpClient, private route: Router, private cultInfoService: TransferInfoCultService){
+  constructor(private _httpClient: HttpClient, private route: Router, private cultInfoService: TransferInfoCultService, private toast: ToastrService){
     this.musicService = new MusicApiService(_httpClient);
   }
   
@@ -32,7 +33,7 @@ export class HomeCultComponent implements OnInit {
           this.cults = res
         },
         error: err => {
-            alert("Erro ao buscar cultos");
+            this.toast.error("Error ao buscar Cultos", "Entre em contato com o ADM do sistema")
         }
       }
     );

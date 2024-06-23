@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { CreateMusic } from '../../model/music/music';
 import { MusicApiService } from '../../services/music-api.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home-music-create',
@@ -18,7 +19,7 @@ import { Router } from '@angular/router';
 export class HomeMusicCreateComponent {
   musicForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private musicService: MusicApiService, private router: Router) {
+  constructor(private fb: FormBuilder, private musicService: MusicApiService, private router: Router, private toast: ToastrService) {
     this.musicForm = fb.group(
       {
         name: ['', [Validators.required]],
@@ -48,12 +49,14 @@ export class HomeMusicCreateComponent {
     this.musicService.createMusic(payload).subscribe(
       {
         next: _ => {
-          alert("Musica criada com sucesso")
-          this.router.navigate(["home/music"])
+          this.toast.success("Musica Criada com sucesso");
+
+          this.router.navigate(["home/music"]);
         },
         error: _ => {
-            alert("error ao criar musica")
-            this.router.navigate(["home/music"])
+          this.toast.error("Musica criada com sucesso", "Entre em contato com o ADM do sistema");
+
+            this.router.navigate(["home/music"]);
         }
       }
     )

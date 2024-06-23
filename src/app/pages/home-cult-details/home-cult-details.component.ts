@@ -8,6 +8,7 @@ import { MusicApiService } from '../../services/music-api.service';
 import { MusicDownload } from '../../model/music/music';
 import { Router } from '@angular/router';
 import { map, tap } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home-cult-details',
@@ -19,7 +20,7 @@ import { map, tap } from 'rxjs';
 export class HomeCultDetailsComponent implements OnInit {
 
   cult: CultResponse = {} as CultResponse;
-  constructor(private cultInfoService: TransferInfoCultService, private musicService: MusicApiService, private router: Router){}
+  constructor(private cultInfoService: TransferInfoCultService, private musicService: MusicApiService, private router: Router, private toast: ToastrService){}
 
   ngOnInit(): void {
     const cultId = this.cultInfoService.getCultInfos;
@@ -30,7 +31,7 @@ export class HomeCultDetailsComponent implements OnInit {
             this.cult = res;
           },
           error: err => {
-            alert("Erro ao buscar Culto");
+            this.toast.error("Error ao buscar Cultos", "Entre em contato com o ADM do sistema")
           },
         }
       ),
@@ -45,7 +46,8 @@ export class HomeCultDetailsComponent implements OnInit {
               })
             },
             error: err => {
-              alert("Error Ao carregar musicas")
+              this.toast.error("Error ao buscar Musicas !", "Entre em contato com o ADM do sistema")
+
             }
           }
         )
