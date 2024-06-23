@@ -6,6 +6,7 @@ import { HomeCultCreateComponent } from './pages/home-cult-create/home-cult-crea
 import { HomeMusicCreateComponent } from './pages/home-music-create/home-music-create.component';
 import { HomeCultAddpraiseComponent } from './pages/home-cult-addpraise/home-cult-addpraise.component';
 import { LoginComponent } from './pages/login/login.component';
+import { authGuard, authGuardADMIN, authGuardUSER } from './guards/auth.guard';
 export const routes: Routes = [
   
   {

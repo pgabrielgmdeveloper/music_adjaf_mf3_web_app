@@ -19,6 +19,7 @@ export class AuthTokenService {
   }
 
   get getToken(): string | null {
+    console.log("Recuperando otoken...")
     return localStorage.getItem(this.TOKEN_KEY)
   }
 
