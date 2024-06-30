@@ -7,28 +7,34 @@ import { HomeMusicCreateComponent } from './pages/home-music-create/home-music-c
 import { HomeCultAddpraiseComponent } from './pages/home-cult-addpraise/home-cult-addpraise.component';
 import { LoginComponent } from './pages/login/login.component';
 import { authGuard, authGuardADMIN, authGuardUSER } from './guards/auth.guard';
+import { RegisterComponent } from './pages/register/register.component';
 export const routes: Routes = [
-  
   {
-    path: "home", component: HomeCultComponent
+    path:"", redirectTo: "/home", pathMatch:"full"
+  },
+  {
+    path: "home", component: HomeCultComponent, canActivate: [authGuard,authGuardUSER]
   },
   {
     path:"login", component: LoginComponent
   },
   {
-    path:"home/cult/details", component: HomeCultDetailsComponent
+    path: "register", component: RegisterComponent
   },
   {
-    path: "home/cult/add-praise", component: HomeCultAddpraiseComponent
+    path:"home/cult/details", component: HomeCultDetailsComponent, canActivate: [authGuard,authGuardUSER]
   },
   {
-    path:"home/cult/create-cult", component: HomeCultCreateComponent
+    path: "home/cult/add-praise", component: HomeCultAddpraiseComponent, canActivate: [authGuard,authGuardUSER]
   },
   {
-    path:"home/music", component: HomeMusicComponent
+    path:"home/cult/create-cult", component: HomeCultCreateComponent, canActivate: [authGuard,authGuardUSER]
   },
   {
-    path: "home/music/create-music", component: HomeMusicCreateComponent
+    path:"home/music", component: HomeMusicComponent, canActivate: [authGuard,authGuardUSER]
+  },
+  {
+    path: "home/music/create-music", component: HomeMusicCreateComponent, canActivate: [authGuard,authGuardUSER]
   }
 
 ];
