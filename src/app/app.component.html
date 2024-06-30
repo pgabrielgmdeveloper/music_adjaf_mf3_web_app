@@ -1,12 +1,15 @@
-<mat-toolbar class="elevation">
-    <button mat-icon-button  (click)="toggleSidenav()">
-        <mat-icon>menu</mat-icon>
-    </button>
-    
-    <p>
-        {{currentPage}}
-    </p>
-</mat-toolbar>
+@if (userlogged) {
+    <mat-toolbar class="elevation">
+        <button mat-icon-button  (click)="toggleSidenav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        
+        <p>
+            {{currentPage}}
+        </p>
+    </mat-toolbar>
+}
+
 <mat-sidenav-container>
     <mat-sidenav #sidenav (backdropClick)="sidenav.close()" (keydown.escape)="sidenav.close()">
         <div class="container-logo-side">

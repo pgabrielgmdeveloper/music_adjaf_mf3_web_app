@@ -1,22 +1,31 @@
 <main>
-    <form [formGroup]="formLogin" (submit)="login()">
-        <mat-form-field>
-            <mat-label>username</mat-label>
-            <input formControlName="username" matInput type="text">
-            <mat-error *ngIf="formLogin.get('username')!.invalid && formSubmited">
-                username é obrigatorio
-            </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>senha</mat-label>
-            <input formControlName="password" matInput type="password">
-            <mat-error *ngIf="formLogin.get('password')!.invalid && formSubmited">
-                senha é obrigatoria
-            </mat-error>
-        </mat-form-field>
-        <div class="container-buttons">
-            <button mat-flat-button type="submit">Entrar</button>
-            <button mat-button>Ainda não possui conta ?</button>
+    <div class="effect">
+        <div class="logo">
+            <img src="https://i.ibb.co/ZzFPQKv/mf3-3etapa.png" alt="">
+            <p>Adjaf music</p>
         </div>
-    </form>
+        <div class="container">
+            <form [formGroup]="formLogin" (submit)="login()">
+                <h1>Login</h1>
+                <mat-form-field>
+                    <mat-label>username</mat-label>
+                    <input formControlName="username" matInput type="email">
+                    <mat-error *ngIf="formLogin.get('username')!.invalid && formSubmited">
+                        username é obrigatorio
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>senha</mat-label>
+                    <input formControlName="password" matInput type="password">
+                    <mat-error *ngIf="formLogin.get('password')!.invalid && formSubmited">
+                        senha é obrigatoria
+                    </mat-error>
+                </mat-form-field>
+                <div class="container-buttons">
+                    <button mat-flat-button type="submit">Entrar</button>
+                    <button mat-button (click)="toRegister()">Ainda não possui conta ?</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </main>

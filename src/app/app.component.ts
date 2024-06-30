@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Route, Router, RouterOutlet } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { AuthTokenService } from './services/auth-token.service';
 
 
 @Component({
@@ -25,19 +26,26 @@ import { MatListModule } from '@angular/material/list';
   ]
 
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   title = 'adjaf-music-web-app';
-  currentPage = "Cultos"
+  currentPage = "cultos"
+  userlogged: boolean = false
+
   @ViewChild('sidenav') sidenav!: MatSidenav;
   toggleSidenav() {
     this.sidenav.toggle();
   }
 
-  constructor(private router: Router) {
-
+  constructor(private router: Router, private auth: AuthTokenService) {
+    this.userlogged = auth.getToken !== null
   }
-
+  ngOnInit(): void {
+    this.auth.userLogged$.subscribe((userLogged: boolean) => {
+        this.userlogged = userLogged
+    }) 
+  }
+  
   navigateToHome(){
     
     this.router.navigate(["home"]);
