@@ -31,7 +31,12 @@ export class HomeCultDetailsComponent implements OnInit {
             this.cult = res;
           },
           error: err => {
-            this.toast.error("Error ao buscar Cultos", "Entre em contato com o ADM do sistema")
+            if(err.status == 403) {
+
+              this.toast.error("sessão expirada")
+              this.router.navigate(["login"])
+            }
+            this.toast.error("Entre em contato com o ADM do sistema","Error ao buscar Cultos",)
           },
         }
       ),
@@ -46,7 +51,12 @@ export class HomeCultDetailsComponent implements OnInit {
               })
             },
             error: err => {
-              this.toast.error("Error ao buscar Musicas !", "Entre em contato com o ADM do sistema")
+              if(err.status == 403) {
+
+                this.toast.error("sessão expirada")
+                this.router.navigate(["login"])
+              }
+              this.toast.error("Entre em contato com o ADM do sistema","Error ao buscar Musicas !",)
 
             }
           }

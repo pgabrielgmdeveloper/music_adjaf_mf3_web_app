@@ -33,9 +33,15 @@ export class HomeCultComponent implements OnInit {
           this.cults = res
         },
         error: err => {
-            this.toast.error("Error ao buscar Cultos", "Entre em contato com o ADM do sistema")
+            if(err.status == 403) {
+
+              this.toast.error("sessão expirada")
+              this.route.navigate(["login"])
+            }
+            this.toast.error("Error ao buscar Cultos", "Entre em contato com o ADM do sistema",)
         }
       }
+      
     );
     
   }

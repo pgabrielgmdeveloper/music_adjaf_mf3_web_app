@@ -23,7 +23,7 @@ export class HomeMusicComponent implements OnInit {
   musics: Array<Music> = [];
   musicName = ""
   displayedColumns: string[] = ['name', 'singer', 'letter'];
-  constructor(private musicService: MusicApiService, private route: Router, private toast: ToastrService){}
+  constructor(private musicService: MusicApiService, private router: Router, private toast: ToastrService){}
   
   ngOnInit(): void {
     this.eatMusics();
@@ -31,7 +31,7 @@ export class HomeMusicComponent implements OnInit {
   }
   
   navigateToCreateMusic(){
-    this.route.navigate(["home/music/create-music"])
+    this.router.navigate(["home/music/create-music"])
   }
 
   private eatMusics(name?: string) {
@@ -40,7 +40,12 @@ export class HomeMusicComponent implements OnInit {
         this.musics = res
       },
       error: err => {
-        this.toast.error("Error ao buscar Musicas !", "Entre em contato com o ADM do sistema")
+        if(err.status == 403) {
+
+          this.toast.error("sessão expirada")
+          this.router.navigate(["login"])
+        }
+        this.toast.error("Entre em contato com o ADM do sistema", "Error ao buscar Musicas !")
 
       }
     });

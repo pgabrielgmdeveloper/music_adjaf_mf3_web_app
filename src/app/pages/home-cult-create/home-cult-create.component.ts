@@ -37,7 +37,12 @@ export class HomeCultCreateComponent {
           this.router.navigate(["home"])
         },
         error: err => {
-          this.toast.error("Error ao criar culto", "Entre em contato com o ADM do sistema")
+          if(err.status == 403) {
+
+            this.toast.error("sessão expirada")
+            this.router.navigate(["login"])
+          }
+          this.toast.error("Entre em contato com o ADM do sistema","Error ao criar culto",)
           this.router.navigate(["home"])
         }
       })

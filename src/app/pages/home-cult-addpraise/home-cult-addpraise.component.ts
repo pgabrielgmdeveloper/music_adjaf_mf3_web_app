@@ -53,7 +53,12 @@ export class HomeCultAddpraiseComponent implements OnInit {
         
       },
       error: err => {
-        this.toast.error("Error ao buscar grupos", "Entre em contato com o ADM do sistema")
+        if(err.status == 403) {
+
+          this.toast.error("sessão expirada")
+          this.router.navigate(["login"])
+        }
+        this.toast.error("Entre em contato com o ADM do sistema", "Error ao buscar grupos", )
 
       }
     })
@@ -64,7 +69,12 @@ export class HomeCultAddpraiseComponent implements OnInit {
         this.musics = this.options.slice();
       },
       error: err => {
-        this.toast.error("Error ao buscar musicas", "Entre em contato com o ADM do sistema")
+        if(err.status == 403) {
+
+          this.toast.error("sessão expirada")
+          this.router.navigate(["login"])
+        }
+        this.toast.error("Entre em contato com o ADM do sistema", "Error ao buscar musicas",)
       }
     })
   }
@@ -101,7 +111,12 @@ export class HomeCultAddpraiseComponent implements OnInit {
             this.router.navigate(["home/cult/details"]);
           },
           error: err => {
-            this.toast.error("Error ao adicionar louvor", "Entre em contato com o ADM do sistema")
+            if(err.status == 403) {
+
+              this.toast.error("sessão expirada")
+              this.router.navigate(["login"])
+            }
+            this.toast.error("Entre em contato com o ADM do sistema","Error ao adicionar louvor", )
             this.router.navigate(["home/cult/details"]);
           }
         }
