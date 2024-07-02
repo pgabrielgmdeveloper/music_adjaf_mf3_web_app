@@ -22,7 +22,6 @@ export class MusicApiService {
     const token = this.tokenService.getToken;
     return new HttpHeaders({
       'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
     })
   }
 

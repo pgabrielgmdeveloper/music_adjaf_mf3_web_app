@@ -54,7 +54,7 @@ export class HomeMusicCreateComponent {
           this.router.navigate(["home/music"]);
         },
         error: _ => {
-          this.toast.error("Musica criada com sucesso", "Entre em contato com o ADM do sistema");
+          this.toast.error("Error ao criar musica", "Entre em contato com o ADM do sistema");
 
             this.router.navigate(["home/music"]);
         }
