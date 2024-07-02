@@ -12,7 +12,7 @@ import { AuthTokenService } from './auth-token.service';
 })
 export class MusicApiService {
 
-  private url: string = "http://localhost:8080/v1"
+  private url: string = "http://localhost:8080/music_adjaf_mf3-0.0.1/v1"
   private tokenService: AuthTokenService;
   constructor(private http: HttpClient) {
     this.tokenService = new AuthTokenService();
